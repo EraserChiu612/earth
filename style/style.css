@@ -1,0 +1,116 @@
+*, *::after, *::before {
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+    /* 旋轉到下方,溢出背景部分隱藏 */
+    overflow: hidden ;
+}
+.universe {
+    width: 100vw;
+    height: 100vh;
+    /* background-image: radial-gradient(#555,#000); */
+    background-image: url(../images/universe.jpg);
+    background-size: cover;
+    background-position: center;
+
+}
+.stars {
+    width: 100vw;
+    height: 100vh;
+    background-image: url(../images/stars.png);
+    background-size: cover;
+    background-position: center;
+    /* 創造星星閃爍特效 */
+    animation: star-pulse 1.5s infinite alternate;
+}
+@keyframes star-pulse {
+    100% {
+        opacity: 0.3;
+    }
+}
+
+.sun {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-image: radial-gradient(#F5C313,#ec7108) ;
+    box-shadow: 0 0 30px #f5c91a;
+    position: absolute;
+    left: calc(100vw / 2 - 100px);
+    top: calc(100vh / 2 - 100px);
+    /* 創造太陽光特效 */
+    animation: sun-fire 2s infinite alternate;
+}
+@keyframes sun-fire {
+    100% {
+        box-shadow: 0 0 100px #f5c91a;
+    }
+}
+:root {
+    --earth_orbit : 80vh;
+    --moon_orbit : 120px;
+}
+/* 地球軌跡 */
+.earth_orbit {
+    width: var(--earth_orbit);
+    height: var(--earth_orbit);
+    border-radius: 50%;
+    /* border: 2px dashed gold  ; */
+    position: absolute;
+    left: calc(100vw / 2 - var(--earth_orbit) / 2);
+    top: calc(100vh / 2 - var(--earth_orbit) / 2);
+    /* 繞著太陽旋轉,每一圈要轉365.25個地球日 */
+    animation: spin 36.525s infinite linear;
+
+}
+@keyframes spin {
+    100% {
+        transform: rotate(-360deg);
+    }
+}
+
+.earth {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+
+    animation: offset-spin 2.73s infinite linear;
+    
+}
+@keyframes offset-spin {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+.earth img {
+    width: 80px;    
+}
+/* 月亮軌跡 */
+.moon_orbit {
+    width: var(--moon_orbit);
+    height: var(--moon_orbit);
+    border-radius: 50%;
+    /* border: 2px dashed red; */
+    position: absolute;
+    left:calc(var(--moon_orbit) / -2) ;
+    top: calc(50% - var(--moon_orbit) / 2 );
+
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    /* 繞著地球旋轉,每一圈要轉27.3個地球日 */
+    animation: spin 2.73s infinite linear;
+}
+.moon {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+
+    position: absolute;
+    left:calc(-30px / 2) ;
+
+}
+.moon img {
+    width: 30px;
+}
